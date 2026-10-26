@@ -9,7 +9,7 @@ import { orderService, rs, type Order } from "@/lib/scartigo/services";
 import { useStore } from "@/lib/scartigo/use-store";
 
 export const Route = createFileRoute("/admin/orders")({
-  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s["id"] === "string" ? s["id"] : undefined }),
   component: Orders,
 });
 
