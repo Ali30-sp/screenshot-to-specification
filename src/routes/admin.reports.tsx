@@ -76,7 +76,7 @@ function Reports() {
             <div className="h-64"><ResponsiveContainer><BarChart data={cats}><XAxis dataKey="category" fontSize={12} /><YAxis fontSize={12} width={60} /><Tooltip formatter={(v: number) => rs(v)} /><Bar dataKey="revenue" fill="var(--chart-2)" radius={[6, 6, 0, 0]} /></BarChart></ResponsiveContainer></div>
           </Panel>
           <Panel><h2 className="mb-3 font-semibold">Card vs Cash</h2>
-            <div className="h-64"><ResponsiveContainer><PieChart><Pie data={split} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90}>{split.map((_, i) => <Cell key={i} fill={i ? "var(--chart-2)" : "var(--chart-1)"} />)}</Pie><Tooltip formatter={(v: number) => rs(v)} /><Legend /></PieChart></ResponsiveContainer></div>
+            <div className="h-64"><ResponsiveContainer><PieChart><Pie data={split} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90} isAnimationActive={false}>{split.map((_, i) => <Cell key={i} fill={i ? "var(--chart-2)" : "var(--chart-1)"} />)}</Pie><Tooltip formatter={(v: number) => rs(v)} /><Legend /></PieChart></ResponsiveContainer></div>
           </Panel>
         </div>)}
     </>
