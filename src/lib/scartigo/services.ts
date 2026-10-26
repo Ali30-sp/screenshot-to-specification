@@ -62,7 +62,7 @@ export const productService = {
   },
   getByBarcode: (bc: string) => productService.getAll().find((p) => p.barcode.toLowerCase() === bc.toLowerCase()),
   isCodeTaken: (bc: string, exceptId?: string) => productService.getAll().some((p) => p.barcode.toLowerCase() === bc.trim().toLowerCase() && p.id !== exceptId),
-  save(p: Omit<Product, "id"> & { id?: string }): Product {
+  save(p: Omit<Product, "id"> & { id?: string | undefined }): Product {
     const list = productService.getAll();
     const prev = p.id ? list.find((x) => x.id === p.id) : undefined;
     const item: Product = { ...p, id: p.id ?? uid() } as Product;

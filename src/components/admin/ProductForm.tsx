@@ -12,7 +12,7 @@ const blank = { name: "", brand: "", category: "Beverages" as Category, price: "
 
 export function ProductForm({ open, product, onClose }: { open: boolean; product: Product | null; onClose: () => void }) {
   const [f, setF] = useState(blank);
-  const [errs, setErrs] = useState<Record<string, string>>({});
+  const [errs, setErrs] = useState<Partial<Record<keyof typeof blank, string>>>({});
   useEffect(() => {
     if (!open) return;
     setErrs({});
@@ -21,7 +21,7 @@ export function ProductForm({ open, product, onClose }: { open: boolean; product
   const set = (k: keyof typeof blank, v: string | boolean) => setF((s) => ({ ...s, [k]: v }));
 
   const submit = () => {
-    const e: Record<string, string> = {};
+    const e: Partial<Record<keyof typeof blank, string>> = {};
     if (!f.name.trim()) e.name = "Name is required";
     if (!f.brand.trim()) e.brand = "Brand is required";
     const price = Number(f.price), stock = Number(f.stock), disc = Number(f.discount);
