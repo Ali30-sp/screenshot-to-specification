@@ -13,7 +13,7 @@ export interface OrderItem { product: Product; quantity: number }
 export interface Order {
   id: string; items: OrderItem[]; subtotal: number; discount: number; total: number;
   paymentMethod: "Card" | "Cash"; paymentStatus: "Pending" | "Paid";
-  status: "Pending" | "Paid" | "Completed"; orderCode?: string; createdAt: string;
+  status: "Pending" | "Paid" | "Completed"; orderCode?: string | undefined; createdAt: string;
 }
 export interface AppNotification { id: string; title: string; message: string; createdAt: string; read: boolean }
 
@@ -128,9 +128,9 @@ function seedOrders(): Order[] {
   const ps = productService.getAll();
   const statuses: Order["status"][] = ["Completed", "Paid", "Pending", "Completed", "Paid", "Completed"];
   return Array.from({ length: 12 }, (_, i) => {
-    const items = [0, 1, 2].slice(0, 1 + (i % 3)).map((k) => ({ product: ps[(i * 3 + k * 5) % ps.length], quantity: 1 + ((i + k) % 3) }));
+    const items = [0, 1, 2].slice(0, 1 + (i % 3)).map((k) => ({ product: ps[(i * 3 + k * 5) % ps.length]!, quantity: 1 + ((i + k) % 3) }));
     const method: "Card" | "Cash" = i % 2 ? "Cash" : "Card";
-    let status = statuses[i % statuses.length];
+    let status = statuses[i % statuses.length]!;
     if (method === "Card" && status === "Pending") status = "Paid";
     const d = new Date(); d.setDate(d.getDate() - (i % 7)); d.setHours(10 + (i % 9), (i * 13) % 60);
     return { id: `ORD-${(100201 + i)}`, items, ...totals(items), paymentMethod: method,
