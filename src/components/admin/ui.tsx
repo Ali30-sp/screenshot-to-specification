@@ -13,7 +13,7 @@ export function PageHeader({ title, subtitle, action }: { title: string; subtitl
   );
 }
 export const Panel = ({ children, className = "" }: { children: ReactNode; className?: string }) =>
-  <section className={`rounded-xl border bg-card p-4 shadow-sm ${className}`}>{children}</section>;
+   <section className={`bento p-5 ${className}`}>{children}</section>;
 
 export function Loading() {
   return <div className="space-y-3" aria-busy="true" aria-label="Loading">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full rounded-xl" />)}</div>;
