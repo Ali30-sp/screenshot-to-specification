@@ -8,7 +8,7 @@ import { Empty, ErrorState, Loading, PageHeader, Panel } from "@/components/admi
 import { orderService, rs } from "@/lib/scartigo/services";
 import { useStore } from "@/lib/scartigo/use-store";
 
-export const Route = createFileRoute("/admin/reports")({ component: Reports });
+export const Route = createFileRoute("/admin/reports")({head:()=>({meta:[{title:"Store Reports — Scartigo"},{name:"description",content:"Scartigo sales analytics and exportable store reports."},{property:"og:title",content:"Store Reports — Scartigo"},{property:"og:description",content:"Explore sales, products and payment reports."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: Reports });
 
 type Range = "today" | "7" | "30" | "custom";
 const iso = (d: Date) => d.toISOString().slice(0, 10);

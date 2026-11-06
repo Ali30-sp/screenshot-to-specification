@@ -7,8 +7,11 @@ import { Badge, Empty, ErrorState, fmtDate, Loading, PageHeader, Panel, StatusBa
 import { ProductForm } from "@/components/admin/ProductForm";
 import { orderService, productService, rs, type Product } from "@/lib/scartigo/services";
 import { useStore } from "@/lib/scartigo/use-store";
+import { HRDashboard } from "@/components/hr/Dashboard";
+import { useState as useToggle } from "react";
 
-export const Route = createFileRoute("/admin/")({ component: Dashboard });
+export const Route = createFileRoute("/admin/")({ head: () => ({meta:[{title:"Dashboard — Scartigo People & Performance"},{name:"description",content:"Scartigo team attendance, performance insights and store operations dashboard."},{property:"og:title",content:"Dashboard — Scartigo People & Performance"},{property:"og:description",content:"Team performance, attendance and store operations in one workspace."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: Workspace });
+function Workspace(){const [store,setStore]=useToggle(false);return <><HRDashboard/><div className="mt-8 border-t pt-5"><Button variant="outline" onClick={()=>setStore(!store)}>{store?'Hide':'Open'} store overview</Button>{store&&<div className="mt-6"><Dashboard/></div>}</div></>;}
 
 function Dashboard() {
   const { data, loading, error, retry } = useStore(() => ({ orders: orderService.getAll(), products: productService.getAll() }));
