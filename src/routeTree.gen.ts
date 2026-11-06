@@ -15,6 +15,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminProductsRouteImport } from './routes/admin.products'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminHrSectionRouteImport } from './routes/admin.hr.$section'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const AdminReportsRoute = AdminReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminHrSectionRoute = AdminHrSectionRouteImport.update({
+  id: '/hr/$section',
+  path: '/hr/$section',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/admin/products': typeof AdminProductsRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/hr/$section': typeof AdminHrSectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/admin/products': typeof AdminProductsRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/hr/$section': typeof AdminHrSectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/admin/products': typeof AdminProductsRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/hr/$section': typeof AdminHrSectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,8 +89,15 @@ export interface FileRouteTypes {
     | '/admin/products'
     | '/admin/reports'
     | '/admin/'
+    | '/admin/hr/$section'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/orders' | '/admin/products' | '/admin/reports' | '/admin'
+  to:
+    | '/'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
+    | '/admin'
+    | '/admin/hr/$section'
   id:
     | '__root__'
     | '/'
@@ -90,6 +106,7 @@ export interface FileRouteTypes {
     | '/admin/products'
     | '/admin/reports'
     | '/admin/'
+    | '/admin/hr/$section'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminReportsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/hr/$section': {
+      id: '/admin/hr/$section'
+      path: '/hr/$section'
+      fullPath: '/admin/hr/$section'
+      preLoaderRoute: typeof AdminHrSectionRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
@@ -149,6 +173,7 @@ interface AdminRouteChildren {
   AdminProductsRoute: typeof AdminProductsRoute
   AdminReportsRoute: typeof AdminReportsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminHrSectionRoute: typeof AdminHrSectionRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
@@ -156,6 +181,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminProductsRoute: AdminProductsRoute,
   AdminReportsRoute: AdminReportsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminHrSectionRoute: AdminHrSectionRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
