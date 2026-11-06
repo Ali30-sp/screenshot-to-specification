@@ -1,5 +1,8 @@
-# Dashboard redesign
-- [x] Apply blue glass theme and navigation while preserving store routes.
-- [x] Add mock HR dashboard and working section pages.
-- [x] Add data-driven mock AI assistant, review tools, insights, and search.
-- [x] Verify existing and new workflows on desktop and mobile.
+# Scartigo grocery dashboard redesign
+- [ ] Apply the new green/orange style and grocery navigation without deleting existing routes.
+- [ ] Add isolated, persistent grocery demo data and Admin/Cashier presentation roles.
+- [ ] Build overview tabs, charts, attention widgets, and working widget controls.
+- [ ] Complete products, QR labels, inventory, offers, orders, and cash verification.
+- [ ] Complete customers, payments, notifications, reports, and store settings.
+- [ ] Add data-driven mock Scart AI tools and command search.
+- [ ] Test preservation rules and key workflows on desktop and mobile.
