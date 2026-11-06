@@ -10,7 +10,7 @@ import { ProductForm } from "@/components/admin/ProductForm";
 import { CATEGORIES, productService, rs, type Product } from "@/lib/scartigo/services";
 import { useStore } from "@/lib/scartigo/use-store";
 
-export const Route = createFileRoute("/admin/products")({ component: Products });
+export const Route = createFileRoute("/admin/products")({head:()=>({meta:[{title:"Store Products — Scartigo"},{name:"description",content:"Manage Scartigo products, stock and discounts."},{property:"og:title",content:"Store Products — Scartigo"},{property:"og:description",content:"Manage your store catalog and inventory."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: Products });
 
 function Products() {
   const { data, loading, error, retry } = useStore(productService.getAll);
